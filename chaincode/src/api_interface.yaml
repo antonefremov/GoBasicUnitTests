@@ -1,0 +1,187 @@
+Id:       blockchain-assets-track
+Version:  0.1
+
+swagger: "2.0"
+
+
+info:
+  description: "Assets Tracking blockchain demo"
+  version: "0.1"
+  title: "Assets Tracking"
+
+
+consumes:
+  - application/x-www-form-urlencoded
+produces:
+  - application/json
+
+
+parameters:
+
+  external_id:
+    name: external_id
+    in: path
+    description: ID of an asset
+    required: true
+    type: string
+    maxLength: 64
+
+  asset_id:
+    name: asset_id
+    in: formData
+    description: ID of an asset
+    required: true
+    type: string
+    maxLength: 64
+
+  sernr:
+    name: sernr
+    in: formData
+    description: Serial number of an asset
+    required: true
+    type: string
+    maxLength: 64
+
+  matnr:
+    name: matnr
+    in: formData
+    description: Material number of an asset
+    required: true
+    type: string
+    maxLength: 64
+
+  obj_desc:
+    name: obj_desc
+    in: formData
+    description: Description of an asset
+    required: true
+    type: string
+    maxLength: 255
+
+  party_id:
+    name: party_id
+    in: path
+    description: ID of an owner
+    required: true
+    type: string
+    maxLength: 64
+
+  owner_id:
+    name: owner_id
+    in: formData
+    description: ID of an owner
+    required: true
+    type: string
+    maxLength: 64
+
+  new_owner_id:
+    name: owner_id
+    in: formData
+    description: ID of a new owner
+    required: true
+    type: string
+    maxLength: 64
+
+  username:
+    name: username
+    in: formData
+    description: Users company
+    required: true
+    type: string
+    maxLength: 255
+
+  company:
+    name: company
+    in: formData
+    description: Users company
+    required: true
+    type: string
+    maxLength: 255
+
+paths:
+
+  /assets/:
+
+    post:
+      operationId: create_asset
+      summary: Creates an asset
+      parameters:
+      - $ref: '#/parameters/asset_id'
+      - $ref: '#/parameters/sernr'
+      - $ref: '#/parameters/matnr'
+      - $ref: '#/parameters/obj_desc'
+      - $ref: '#/parameters/owner_id'
+      responses:
+        200:
+          description: Asset Created
+        400:
+          description: Parameter Mismatch
+        409:
+          description: Asset Already Exists
+        500:
+          description: Asset not Created because of Error
+
+  /assets/{external_id}:
+
+    get:
+      operationId: read_asset
+      summary: Read an Asset
+      parameters:
+      - $ref: '#/parameters/external_id'
+      responses:
+        200:
+          description: Asset Returned
+        400:
+          description: Parameter Mismatch
+        404:
+          description: Not Found
+
+    put:
+      operationId: set_owner
+      summary: Updates Owner of an Asset by Id
+      parameters:
+      - $ref: '#/parameters/external_id'
+      - $ref: '#/parameters/new_owner_id'
+      responses:
+        200:
+          description: Owner Updated
+        400:
+          description: Parameter Mismatch
+        404:
+          description: Not Found
+        500:
+          description: Asset not Updated because of Error
+
+  /owners/:
+
+    post:
+      operationId: create_owner
+      summary: Creates a new owner
+      parameters:
+      - $ref: '#/parameters/owner_id'
+      - $ref: '#/parameters/username'
+      - $ref: '#/parameters/company'
+      responses:
+        200:
+          description: Owner Created
+        400:
+          description: Parameter Mismatch
+        409:
+          description: Owner Already Exists
+        500:
+          description: Owner not Created because of Error
+
+  /owners/{party_id}:
+
+    get:
+      operationId: read_owner
+      summary: Get an Owner
+      parameters:
+      - $ref: '#/parameters/party_id'
+      responses:
+        200:
+          description: Owner Returned
+        400:
+          description: Parameter Mismatch
+        404:
+          description: Not Found
