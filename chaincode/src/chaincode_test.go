@@ -2,21 +2,10 @@ package main
 
 import (
     "testing"
-    "github.com/hyperledger/fabric/core/chaincode/shim"
 )
 
-func initChaincode(test *testing.T) *shim.MockStub {
-    stub := shim.NewMockStub("testingStub", new(SimpleChaincode))
-    result := stub.MockInit("000", nil)
-
-    if result.Status != shim.OK {
-        test.FailNow()
-    }
-    return stub
-}
-
 func TestInstancesCreation(test *testing.T) {
-  stub := initChaincode(test)
+  stub := InitChaincode(test)
 
   assetExternalId := "ID01"
   ownerId := "o1"
