@@ -8,11 +8,11 @@ import (
 )
 
 type Asset struct {
-	ExternalId      string `json:"externalId"`
-	Sernr						string `json:"sernr"`
-	Matnr						string `json:"matnr"`
-	ObjDesc					string `json:"objDesc"`
-  OwnerId         string `json:"ownerId"`
+	ExternalId      string `json:"externalId"` // Asset Id
+	Sernr						string `json:"sernr"`      // Serial Number
+	Matnr						string `json:"matnr"`      // Material Number
+	ObjDesc					string `json:"objDesc"`    // Description
+  OwnerId         string `json:"ownerId"`    // Owner Id
 }
 
 // ============================================================================================================================

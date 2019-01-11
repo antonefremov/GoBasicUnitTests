@@ -9,9 +9,9 @@ import (
 )
 
 type Owner struct {
-	Id         string `json:"id"`
-	Username   string `json:"username"`
-	Company    string `json:"company"`
+	Id         string `json:"id"`        // Owner Id
+	Username   string `json:"username"`  // User Name
+	Company    string `json:"company"`   // User Company name
 }
 
 // ============================================================================================================================
