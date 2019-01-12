@@ -16,7 +16,7 @@ var _ = Describe("Owner Tests", func() {
   argsToRead := [][]byte{[]byte("read_owner"), mockOwner[0]}
   payload := []byte{}
 
-  Describe("Running tests for the Owner", func() {
+  Describe("Checking the CRUD operations", func() {
       Context("Checking that create/read for Owner work fine", func() {
           It("Should be created successfully", func() {
               receivedStatus := stub.MockInvoke("000", argsToCreate).Status
