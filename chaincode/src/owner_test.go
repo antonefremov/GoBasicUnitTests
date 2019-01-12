@@ -16,10 +16,6 @@ var _ = Describe("Owner Tests", func() {
   argsToRead := [][]byte{[]byte("read_owner"), mockOwner[0]}
   payload := []byte{}
 
-  BeforeEach(func() {
-    stub.MockInit("000", nil)
-  })
-
   Describe("Running tests for the Owner", func() {
       Context("Checking that create/read for Owner work fine", func() {
           It("Should be created successfully", func() {
